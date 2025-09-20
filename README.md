@@ -10,4 +10,5 @@ Ideoita ominaisuuksista:
 <img width="150" height="150" alt="image" src="https://github.com/user-attachments/assets/025343bb-adab-4b92-aa9a-26f629f8de52" />
 
 
+<img width="270" height="270" alt="image" src="https://github.com/user-attachments/assets/30af035a-a3be-4883-b5dc-ae32f0985e32" />
 
