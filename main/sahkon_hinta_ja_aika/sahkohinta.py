@@ -2,7 +2,8 @@ import requests
 from datetime import datetime
 import tkinter as tk
 
-API_UPDATE_INTERVAL = 5 * 60 * 1000  # päivitys 5 minuutin välein (ms)
+PRICE_UPDATE_INTERVAL = 60 * 1000  # sähkön hinta päivittyy 1 minuutin välein (ms)
+TIME_UPDATE_INTERVAL = 1000        # kellonaika päivittyy sekunnin välein (ms)
 
 def hae_nykyinen_hinta():
     nyt = datetime.now()
@@ -21,21 +22,22 @@ def hae_nykyinen_hinta():
     except Exception:
         return None
 
-def paivita_naytto():
+def paivita_hinta():
     hinta = hae_nykyinen_hinta()
-    nyt = datetime.now()
-    aika_str = nyt.strftime("%H:%M:%S")
-    paiva_str = nyt.strftime("%Y-%m-%d")
-
     if hinta is not None:
         hinta_label.config(text=f"{hinta:.2f} snt/kWh")
     else:
         hinta_label.config(text="Ei saatavilla")
-
-    aika_label.config(text=f"{paiva_str} {aika_str}")
-
     # Suorita päivitys uudelleen määrätyn ajan kuluttua
-    root.after(API_UPDATE_INTERVAL, paivita_naytto)
+    root.after(PRICE_UPDATE_INTERVAL, paivita_hinta)
+
+def paivita_kello():
+    nyt = datetime.now()
+    aika_str = nyt.strftime("%H:%M:%S")
+    paiva_str = nyt.strftime("%Y-%m-%d")
+    aika_label.config(text=f"{paiva_str} {aika_str}")
+    # Suorita päivitys uudelleen sekunnin kuluttua
+    root.after(TIME_UPDATE_INTERVAL, paivita_kello)
 
 # --- Tkinter GUI ---
 root = tk.Tk()
@@ -53,7 +55,8 @@ hinta_label.pack(pady=10)
 aika_label = tk.Label(frame, text="", font=("Helvetica", 16))
 aika_label.pack()
 
-# Aloitetaan automaattinen päivitys
-paivita_naytto()
+# Aloitetaan päivitykset
+paivita_hinta()
+paivita_kello()
 
 root.mainloop()
