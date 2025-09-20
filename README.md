@@ -1,4 +1,4 @@
-Pörssisähkön hinta asunnon seinällä olevaan näyttöön (raspi).
+Pörssisähkön hinta asunnon seinällä olevaan näyttöön (raspi). Vaihtoehtoisesti väriä vaihtava älyvalo (RGB)
 
 Ideoita ominaisuuksista:
 - Dynaamisesti muuttuva väri. Esim vihreä kun halpaa ja punainen kun kallista yms.
